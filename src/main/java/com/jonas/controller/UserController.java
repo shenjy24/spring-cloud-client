@@ -4,6 +4,7 @@ import com.jonas.api.dto.User;
 import com.jonas.api.service.UserApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,14 @@ public class UserController {
     @PostMapping("/test")
     public Integer test() {
         return userApiService.test();
+    }
+
+    @PostMapping("/getUserObject")
+    public User getUserObject(Long id, String name) {
+        User user = new User();
+        user.setId(id);
+        user.setName(name);
+        return userApiService.getUserObject(user);
     }
 }
 
