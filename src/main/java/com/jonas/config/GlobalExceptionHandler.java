@@ -2,7 +2,6 @@ package com.jonas.config;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-import com.jonas.constant.BizException;
 import com.jonas.constant.JsonResult;
 import com.jonas.constant.SystemCode;
 import com.jonas.util.logging.SystemLogger;
