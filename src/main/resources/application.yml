@@ -91,4 +91,4 @@ management:
 
 api:
   server:
-    host: localhost:18764
+    host: http://localhost:18764
