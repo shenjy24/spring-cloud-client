@@ -35,7 +35,8 @@ public class UserController {
         User user = new User();
         user.setId(id);
         user.setName(name);
-        return userApiService.getUserObject(user);
+        User user1 = userApiService.getUserObject(user);
+        return user1;
     }
 }
 

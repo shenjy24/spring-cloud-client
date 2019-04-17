@@ -6,6 +6,7 @@ import com.jonas.constant.BizException;
 import com.jonas.constant.JsonResult;
 import com.jonas.constant.SystemCode;
 import com.jonas.util.logging.SystemLogger;
+import feign.codec.DecodeException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,10 +24,12 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public JsonResult handleException(Exception ex) {
-        if (ex instanceof BizException) {
+        if (ex instanceof DecodeException) {
             Iterable iterable = Splitter.on(":").trimResults().omitEmptyStrings().split(ex.getMessage());
             List<String> item = Lists.newArrayList(iterable);
-            return new JsonResult(item.get(1), item.get(2), null);
+            if ("BizException".equals(item.get(0))) {
+                return new JsonResult(item.get(1), item.get(2), null);
+            }
         }
 
         SystemLogger.error(ex, "handle exception");
